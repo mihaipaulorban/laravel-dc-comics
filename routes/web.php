@@ -2,17 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Connetto il mio controller
+use App\Http\Controllers\ComicController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ROTTE
+
+// Rotta per il controller per Welcome
+Route::get('/', [ComicController::class, 'index']);
+
+// Rotta per la pagina delle descrizioni
+Route::get('/comics/{comic}', [ComicController::class, 'show']);
