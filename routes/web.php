@@ -10,5 +10,12 @@ use App\Http\Controllers\ComicController;
 // Rotta per il controller per Welcome
 Route::get('/', [ComicController::class, 'index']);
 
+// Rotta per il metodo Create del controller
+Route::get('/comics/create', [ComicController::class, 'create']);
+
+
 // Rotta per la pagina delle descrizioni
 Route::get('/comics/{comic}', [ComicController::class, 'show']);
+
+// Rotta per salvare e procesare il form nel DB
+Route::post('/comics', [ComicController::class, 'store']);

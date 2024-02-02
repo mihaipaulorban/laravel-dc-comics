@@ -11,10 +11,14 @@
 </head>
 <body class="d-flex vh-100 justify-content-center align-items-center">
     <div class="container text-center">
+        {{-- Pulsante per aggiungere un nuovo fumetto --}}
+        <a href="{{ url('comics/create') }}" class="btn btn-primary mb-4">Add New Comic</a>
+
+        {{-- Lista fumetti con i vari link alle pagine --}}
         @foreach ($comics as $comic)
-        <h2>{{ $comic->title }}</h2>
-        <a href="/comics/{{ $comic->id }}">View details</a>
-    @endforeach
+            <h2>{{ $comic->title }}</h2>
+            <a href="/comics/{{ $comic->id }}">View details</a>
+        @endforeach
     </div>
     
 </body>
