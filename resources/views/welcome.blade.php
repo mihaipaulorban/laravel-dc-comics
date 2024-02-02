@@ -17,8 +17,16 @@
         {{-- Lista fumetti con i vari link alle pagine --}}
         @foreach ($comics as $comic)
             <h2>{{ $comic->title }}</h2>
-            <a href="/comics/{{ $comic->id }}">View details</a>
-            <a href="/comics/{{ $comic->id }}/edit">Edit</a>
+            {{-- Link Descrizione --}}
+            <a href="/comics/{{ $comic->id }}">Descrizione</a>
+            {{-- Link Modifica --}}
+            <a href="/comics/{{ $comic->id }}/edit">Modifica</a>
+            {{-- Pulsante Elimina --}}
+            <form method="POST" action="/comics/{{ $comic->id }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Elimina</button>
+            </form>
         @endforeach
     </div>
     

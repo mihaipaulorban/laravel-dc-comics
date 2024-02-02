@@ -73,4 +73,12 @@ class ComicController extends Controller
 
         return redirect('/')->with('status', 'Comic updated successfully!');
     }
+
+    // Metodo per eliminare un fumetto
+    public function destroy(Comic $comic)
+    {
+        $comic->delete();
+
+        return redirect('/')->with('status', 'Comic deleted successfully!');
+    }
 }
