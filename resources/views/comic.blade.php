@@ -13,6 +13,7 @@
     <div class="container text-center">
         <h1>{{ $comic->title }}</h1>
         <p>{{ $comic->description }}</p>
+        <a href="{{ url('/') }}" class="btn btn-primary mt-5">Torna alla Home</a>
     </div>
 </body>
 

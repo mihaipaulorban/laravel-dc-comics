@@ -1,32 +1,71 @@
-<form action="{{ url('/comics') }}" method="POST">
-    @csrf
 
-    <label for="title">Title:</label>
-    <input type="text" name="title" id="title" required><br>
 
-    <label for="description">Description:</label>
-    <textarea name="description" id="description" required></textarea><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <label for="thumb">Thumbnail URL:</label>
-    <input type="text" name="thumb" id="thumb"><br>
+    {{-- Includo gli assets con la direttiva @vite --}}
+    @vite ('resources/js/app.js')
+    <title>Crea Fumetto</title>
+</head>
+<body class="d-flex vh-100 justify-content-center align-items-center">
+    <div class="container text-center w-50">
+        <a href="{{ url('/') }}" class="btn btn-primary mb-5">Torna alla Home</a>
+        <form action="{{ url('/comics') }}" method="POST">
+            @csrf
 
-    <label for="price">Price:</label>
-    <input type="text" name="price" id="price" required><br>
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
 
-    <label for="series">Series:</label>
-    <input type="text" name="series" id="series"><br>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
 
-    <label for="sale_date">Sale Date:</label>
-    <input type="date" name="sale_date" id="sale_date"><br>
+            <div class="mb-3">
+                <label for="thumb" class="form-label">Thumbnail URL:</label>
+                <input type="text" class="form-control" id="thumb" name="thumb">
+            </div>
 
-    <label for="type">Type:</label>
-    <input type="text" name="type" id="type"><br>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="text" class="form-control" id="price" name="price" required>
+            </div>
 
-    <label for="artists">Artists (in JSON format):</label>
-    <textarea name="artists" id="artists"></textarea><br>
+            <div class="mb-3">
+                <label for="series" class="form-label">Series:</label>
+                <input type="text" class="form-control" id="series" name="series">
+            </div>
 
-    <label for="writers">Writers (in JSON format):</label>
-    <textarea name="writers" id="writers"></textarea><br>
+            <div class="mb-3">
+                <label for="sale_date" class="form-label">Sale Date:</label>
+                <input type="date" class="form-control" id="sale_date" name="sale_date">
+            </div>
 
-    <input type="submit" value="Add Comic">
-</form>
+            <div class="mb-3">
+                <label for="type" class="form-label">Type:</label>
+                <input type="text" class="form-control" id="type" name="type">
+            </div>
+
+            <div class="mb-3">
+                <label for="artists" class="form-label">Artists (in JSON format):</label>
+                <textarea class="form-control" id="artists" name="artists"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="writers" class="form-label">Writers (in JSON format):</label>
+                <textarea class="form-control" id="writers" name="writers"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4">Aggiungi Fumetto</button>
+        </form>
+    </div>
+    
+</body>
+
+</html>
