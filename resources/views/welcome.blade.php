@@ -18,6 +18,7 @@
         @foreach ($comics as $comic)
             <h2>{{ $comic->title }}</h2>
             <a href="/comics/{{ $comic->id }}">View details</a>
+            <a href="/comics/{{ $comic->id }}/edit">Edit</a>
         @endforeach
     </div>
     

@@ -19,3 +19,9 @@ Route::get('/comics/{comic}', [ComicController::class, 'show']);
 
 // Rotta per salvare e procesare il form nel DB
 Route::post('/comics', [ComicController::class, 'store']);
+
+// Rotta per modificare il fumetto
+Route::get('/comics/{comic}/edit', [ComicController::class, 'edit']);
+
+// Rotta per l'update
+Route::put('/comics/{comic}', [ComicController::class, 'update'])->name('comics.update');

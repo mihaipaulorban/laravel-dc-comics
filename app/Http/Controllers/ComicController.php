@@ -27,21 +27,50 @@ class ComicController extends Controller
         return view('create');
     }
 
+
+    // Metodo per lo store delle informazioni
     public function store(Request $request)
     {
-        $comic = new Comic();
-        $comic->title = $request->title;
-        $comic->description = $request->description;
-        $comic->thumb = $request->thumb;
-        $comic->price = $request->price;
-        $comic->series = $request->series;
-        $comic->sale_date = $request->sale_date;
-        $comic->type = $request->type;
-        $comic->artists = json_decode($request->artists);
-        $comic->writers = json_decode($request->writers);
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'thumb' => 'nullable|url',
+            'price' => 'required|max:255',
+            'series' => 'nullable|max:255',
+            'sale_date' => 'nullable|date',
+            'type' => 'nullable|max:255',
+            'artists' => 'nullable|json',
+            'writers' => 'nullable|json'
+        ]);
 
-        $comic->save();
+        Comic::create($validatedData);
 
-        return redirect('/')->with('status', 'Comic added successfully!');
+        return redirect('/')->with('status', 'Fumetto Generato!');
+    }
+
+    // Metodo per mandarti al form di update
+    public function edit(Comic $comic)
+    {
+        return view('edit', compact('comic'));
+    }
+
+    // Motodo per aggiornare le info di un fumetto
+    public function update(Request $request, Comic $comic)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'thumb' => 'nullable|url',
+            'price' => 'required|max:255',
+            'series' => 'nullable|max:255',
+            'sale_date' => 'nullable|date',
+            'type' => 'nullable|max:255',
+            'artists' => 'nullable|json',
+            'writers' => 'nullable|json'
+        ]);
+
+        $comic->update($validatedData);
+
+        return redirect('/')->with('status', 'Comic updated successfully!');
     }
 }
