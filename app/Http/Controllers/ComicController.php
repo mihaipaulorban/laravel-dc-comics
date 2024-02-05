@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Importo il ComicRequest
+use App\Http\Requests\ComicRequest;
+
 // Importo per l'uso il model Comic per far accedere anche al Controller il DB
 use App\Models\Comic;
+
 
 class ComicController extends Controller
 {
@@ -29,19 +33,9 @@ class ComicController extends Controller
 
 
     // Metodo per lo store delle informazioni
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'thumb' => 'nullable|url',
-            'price' => 'required|max:255',
-            'series' => 'nullable|max:255',
-            'sale_date' => 'nullable|date',
-            'type' => 'nullable|max:255',
-            'artists' => 'nullable|json',
-            'writers' => 'nullable|json'
-        ]);
+        $validatedData = $request->validated();
 
         Comic::create($validatedData);
 
@@ -54,24 +48,14 @@ class ComicController extends Controller
         return view('edit', compact('comic'));
     }
 
-    // Motodo per aggiornare le info di un fumetto
-    public function update(Request $request, Comic $comic)
+    // Metodo per aggiornare le info di un fumetto
+    public function update(ComicRequest $request, Comic $comic)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'thumb' => 'nullable|url',
-            'price' => 'required|max:255',
-            'series' => 'nullable|max:255',
-            'sale_date' => 'nullable|date',
-            'type' => 'nullable|max:255',
-            'artists' => 'nullable|json',
-            'writers' => 'nullable|json'
-        ]);
+        $validatedData = $request->validated();
 
         $comic->update($validatedData);
 
-        return redirect('/')->with('status', 'Comic updated successfully!');
+        return redirect('/')->with('status', 'Fumetto aggiornato con successo!');
     }
 
     // Metodo per eliminare un fumetto
